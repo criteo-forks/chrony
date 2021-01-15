@@ -11,6 +11,11 @@
 # Record the rate at which the system clock gains/losses time.
 driftfile <%= @driftfile %>
 
+# Correct clock by stepping before normal operation begins
+<% if @initstepslew %>
+initstepslew <%= @initstepslew %>
+<% end %>
+
 # Allow the system clock to be stepped in the first three updates
 # if its offset is larger than 1 second.
 makestep 1 3

@@ -45,17 +45,17 @@ end
 if node['chrony']['servers'].empty?
   clients = search(:node, 'recipes:chrony\:\:client').sort || []
   unless clients.empty?
-    node.default['chrony']['initslewstep'] = 'initslewstep 10'
+    node.default['chrony']['initstepslew'] = 'initstepslew 10'
     count = 3
     count = clients.length if clients.length < count
-    count.times { |x| node.default['chrony']['initslewstep'] += " #{clients[x].ipaddress}" }
+    count.times { |x| node.default['chrony']['initstepslew'] += " #{clients[x].ipaddress}" }
   end
 else
-  node.default['chrony']['initslewstep'] = 'initslewstep 10'
+  node.default['chrony']['initstepslew'] = 'initstepslew 10'
   keys = node['chrony']['servers'].keys.sort
   count = 3
   count = keys.length if keys.length < count
-  count.times { |x| node.default['chrony']['initslewstep'] += " #{keys[x]}" }
+  count.times { |x| node.default['chrony']['initstepslew'] += " #{keys[x]}" }
 end
 
 template 'chrony.conf' do
@@ -66,6 +66,7 @@ template 'chrony.conf' do
   mode '0644'
   variables allow: node['chrony']['allow'],
             driftfile: node['chrony']['driftfile'],
+            initstepslew: node['chrony']['initstepslew'],
             log_dir: node['chrony']['log_dir'],
             servers: node['chrony']['servers']
   notifies :restart, 'service[chrony]'

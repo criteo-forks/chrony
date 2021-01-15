@@ -52,8 +52,8 @@ else
   masters.each do |master|
     node.default['chrony']['servers'][master['ipaddress']] = master['chrony']['server_options']
     node.default['chrony']['allow'].push "allow #{master['ipaddress']}"
-    # only use 1 server to sync initslewstep
-    node.default['chrony']['initslewstep'] = "initslewstep 20 #{master['ipaddress']}"
+    # only use 1 server to sync initstepslew
+    node.default['chrony']['initstepslew'] = "initstepslew 20 #{master['ipaddress']}"
   end
 end
 
@@ -64,6 +64,7 @@ template 'chrony.conf' do
   group 'root'
   mode '0644'
   variables driftfile: node['chrony']['driftfile'],
+            initstepslew: node['chrony']['initstepslew'],
             log_dir: node['chrony']['log_dir'],
             servers: node['chrony']['servers']
   notifies :restart, 'service[chrony]'

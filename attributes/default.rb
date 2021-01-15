@@ -33,7 +33,7 @@ default['chrony']['server_options'] = 'offline minpoll 8'
 default['chrony']['allow'] = []
 
 # set in the client & master recipes
-default['chrony']['initslewstep'] = ''
+default['chrony']['initstepslew'] = ''
 
 default['chrony']['log_dir'] = '/var/log/chrony'
 default['chrony']['driftfile'] = '/var/lib/chrony/drift'
