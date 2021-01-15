@@ -6,8 +6,8 @@ description      'Installs/Configures chrony, an application used to maintain th
 
 version          '0.3.1'
 chef_version     '>= 13.0'
-issues_url       'https://github.com/chef-cookbooks/chrony/issues'
-source_url       'https://github.com/chef-cookbooks/chrony'
+issues_url       'https://github.com/sous-chefs/chrony/issues'
+source_url       'https://github.com/sous-chefs/chrony'
 
 supports 'debian'
 supports 'ubuntu'
