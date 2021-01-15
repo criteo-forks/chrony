@@ -35,6 +35,10 @@ logdir <%= @log_dir %>
 # Select which information is logged.
 #log measurements statistics tracking
 
+<% if @bindaddress %>
+bindaddress <%= @bindaddress %>
+<% end %>
+
 # The allow directive is used to designate a particular subnet from which NTP clients
 # are allowed to access the computer as an NTP server. The default is that no clients
 # are allowed access, i.e. chronyd operates purely as an NTP client. If the allow

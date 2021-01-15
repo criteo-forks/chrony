@@ -25,6 +25,9 @@ default['chrony']['servers'] = {
 
 default['chrony']['server_options'] = 'offline minpoll 8'
 
+# Address to listen on for NTP requests
+default['chrony']['bindaddress'] = ''
+
 # set in the client & master recipes
 # for better security, clients that do not need to serve ntp requests to peers or other clients
 # should not have the `allow` directive in chrony.conf
